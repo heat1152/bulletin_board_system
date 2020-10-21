@@ -13,8 +13,12 @@
             <div id="header">
                 <h1>募集投稿掲示板</h1>
             </div>
-            <c:if test="${sessionScope.user == null}">
+            <c:if test="${sessionScope.login_user == null}">
                 <a href="<c:url value='/login' />">ログイン</a>&nbsp;
+                <a href="<c:url value='/account/new' />">新規登録</a>&nbsp;
+            </c:if>
+             <c:if test="${sessionScope.login_user != null}">
+                <a href="<c:url value='/logout' />">ログアウト</a>&nbsp;
             </c:if>
             <div id="content">
                 ${param.content}
