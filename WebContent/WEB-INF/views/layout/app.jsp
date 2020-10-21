@@ -13,6 +13,9 @@
             <div id="header">
                 <h1>募集投稿掲示板</h1>
             </div>
+            <c:if test="${sessionScope.user == null}">
+                <a href="<c:url value='/login' />">ログイン</a>&nbsp;
+            </c:if>
             <div id="content">
                 ${param.content}
             </div>
