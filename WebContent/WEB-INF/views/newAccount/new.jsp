@@ -5,7 +5,9 @@
         <h2>新規登録</h2>
         <form method="POST" action="<c:url value='/account/create' />">
             <c:import url="../layout/account_form.jsp"/>
-            <button type="submit">新規登録</button>
+            <div id="form_button">
+                <button type="submit">新規登録</button>
+            </div>
         </form>
     </c:param>
 </c:import>

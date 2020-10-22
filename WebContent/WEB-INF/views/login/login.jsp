@@ -10,7 +10,10 @@
         <h2>ログイン</h2>
         <form method="POST" action="<c:url value='/login' />">
             <c:import url="../layout/account_form.jsp"/>
+            <div id="form_button">
             <button type="submit">ログイン</button>
+            </div>
+
         </form>
     </c:param>
 </c:import>

@@ -13,7 +13,9 @@
                     <textarea name="profile" rows="10" cols="50">${user.profile}</textarea>
                     <br /><br />
                     <input type="hidden" name="_token" value="${_token}" />
-                    <button type="submit">更新</button>
+                    <div id="form_button">
+                        <button type="submit">更新</button>
+                    </div>
                 </form>
             </c:when>
         </c:choose>

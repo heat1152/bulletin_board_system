@@ -13,6 +13,8 @@
                 </tr>
             </tbody>
         </table>
-        <p><a href="<c:url value='/user/edit?id=${user.id}' />">編集する</a></p>
+        <div id="form_button">
+            <button onclick="location.href='<c:url value='/user/edit?id=${user.id}' />'">編集する</button>
+        </div>
     </c:param>
 </c:import>
