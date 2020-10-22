@@ -37,6 +37,7 @@ public class UserUpdateServlet extends HttpServlet {
         em.getTransaction().commit();
         em.close();
 
+
         request.getSession().removeAttribute("user_id");
 
         response.sendRedirect(request.getContextPath() + "/user/show?id="+u.getId());

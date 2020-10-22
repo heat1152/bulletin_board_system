@@ -34,7 +34,7 @@ public class UserShowServlet extends HttpServlet {
 
 
         if(u.getId() == login_user.getId()){//取り出したユーザー情報がログインユーザー情報と一致した場合マイページへ
-            request.setAttribute("user", login_user);
+            request.setAttribute("user", u);
 
             RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/myPage/show.jsp");
             rd.forward(request, response);
