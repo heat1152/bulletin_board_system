@@ -10,10 +10,21 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Table(name = "recruitments")
-
+@NamedQueries({
+    @NamedQuery(
+            name = "getAllRecruitments",
+            query = "SELECT r FROM Recruitment AS r ORDER BY r.id DESC"
+            ),
+    @NamedQuery(
+            name = "getRecruitmentsCount",
+            query = "SELECT COUNT(r) FROM Recruitment AS r"
+            ),
+})
 @Entity
 public class Recruitment {
     @Id
@@ -74,8 +85,4 @@ public class Recruitment {
     public void setUpdated_at(Timestamp updated_at) {
         this.updated_at = updated_at;
     }
-
-
-
-
 }
