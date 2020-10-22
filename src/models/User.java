@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -14,6 +15,10 @@ import javax.persistence.Table;
     @NamedQuery(
             name = "checkLoginNameAndPassword",
             query = "SELECT u FROM User AS u WHERE u.name = :name AND u.password = :pass"
+            ),
+    @NamedQuery(
+            name = "getAllUser",
+            query = "SELECT u FROM User AS u ORDER BY u.id DESC"
             )
 })
 @Entity
@@ -27,6 +32,7 @@ public class User {
     @Column(name = "name",length = 20,nullable = false)
     private String name;
 
+    @Lob
     @Column(name = "profile",length = 255)
     private String profile;
 

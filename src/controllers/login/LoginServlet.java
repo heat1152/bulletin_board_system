@@ -26,6 +26,7 @@ public class LoginServlet extends HttpServlet {
     }
     //ログイン画面表示
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("_token", request.getSession().getId());
         request.setAttribute("hasError", false);
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/login/login.jsp");
         rd.forward(request, response);
@@ -64,6 +65,7 @@ public class LoginServlet extends HttpServlet {
         }
         if(!check_result) {
             // 認証できなかったらログイン画面に戻る
+            request.setAttribute("_token", request.getSession().getId());
             request.setAttribute("hasError", true);
             request.setAttribute("name", name);
 
@@ -72,7 +74,7 @@ public class LoginServlet extends HttpServlet {
         } else {
             // 認証できたらログイン状態にしてトップページへリダイレクト
             request.getSession().setAttribute("login_user", u);
-            response.sendRedirect(request.getContextPath() + "/");
+            response.sendRedirect(request.getContextPath() + "/noAccountTopPage");
         }
     }
 }

@@ -1,7 +1,6 @@
-package controllers.toppage;
+package controllers.user;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
@@ -15,25 +14,27 @@ import models.User;
 import utils.DBUtil;
 
 
-@WebServlet("/noAccountTopPage")
-public class NoAccountTopPageIndexServlet extends HttpServlet {
+@WebServlet("/user/edit")
+public class UserEditServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
 
-    public NoAccountTopPageIndexServlet() {
+    public UserEditServlet() {
         super();
     }
 
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
-        List<User> users = em.createNamedQuery("getAllUser", User.class)
-                .getResultList();
+
+        User u = em.find(User.class, Integer.parseInt(request.getParameter("id")));
+
         em.close();
 
-        request.setAttribute("users", users);
+        request.setAttribute("user", u);
+        request.getSession().setAttribute("user_id", u.getId());
+        request.setAttribute("_token", request.getSession().getId());
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/myPage/edit.jsp");
         rd.forward(request, response);
     }
 

@@ -4,13 +4,7 @@
     <c:param name="content">
         <h2>新規登録</h2>
         <form method="POST" action="<c:url value='/account/create' />">
-            <label for="name">名前</label><br />
-            <input type="text" name="name" value="${name}" />
-            <br /><br />
-
-            <label for="password">パスワード</label><br />
-            <input type="password" name="password" />
-            <br /><br />
+            <c:import url="../layout/account_form.jsp"/>
             <button type="submit">新規登録</button>
         </form>
     </c:param>

@@ -21,6 +21,7 @@ public class AccountNewServlet extends HttpServlet {
 
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("_token", request.getSession().getId());
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/newAccount/new.jsp");
         rd.forward(request, response);
 
