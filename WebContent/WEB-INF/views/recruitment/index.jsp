@@ -7,8 +7,14 @@
             <tbody>
                 <c:forEach var="recruitment" items="${recruitments}">
                     <tr><td>名前：<a href="<c:url value='/user/show?id=${recruitment.user.id}' />"><c:out value="${recruitment.user.name}"/></a></td></tr>
-                    <tr><td><c:out value="${recruitment.contents}"/></td></tr>
-                    <tr><td><a href="<c:url value='/recruitment/show?id=${recruitment.id}'/>">詳細を見る</a></td></tr>
+                    <tr class="contents_tr"><td><c:out value="${recruitment.contents}"/></td></tr>
+                    <tr>
+                        <td>
+                            <div id="show_link">
+                                <a href="<c:url value='/recruitment/show?id=${recruitment.id}'/>">詳細を見る</a>
+                            </div>
+                        </td>
+                    </tr>
                 </c:forEach>
             </tbody>
         </table>
@@ -24,6 +30,9 @@
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
+        </div>
+        <div id="form_button">
+            <button onclick="location.href='<c:url value='/recruitment/new' />'">募集新規作成</button>
         </div>
     </c:param>
 </c:import>

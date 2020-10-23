@@ -1,4 +1,4 @@
-package controllers.user;
+package controllers.recruitments;
 
 import java.io.IOException;
 
@@ -10,30 +10,30 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import models.User;
+import models.Recruitment;
 import utils.DBUtil;
 
 
-@WebServlet("/user/show")
-public class UserShowServlet extends HttpServlet {
+@WebServlet("/recruitment/show")
+public class RecruitmentShowServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-
-    public UserShowServlet() {
+    public RecruitmentShowServlet() {
         super();
     }
-
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         EntityManager em = DBUtil.createEntityManager();
 
-        User u = em.find(User.class, Integer.parseInt(request.getParameter("id")));
+        Recruitment r = em.find(Recruitment.class, Integer.parseInt(request.getParameter("id")));
 
         em.close();
-        request.setAttribute("user", u);
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/user/show.jsp");
-        rd.forward(request, response);
 
+        request.setAttribute("recruitment", r);
+        request.setAttribute("_token", request.getSession().getId());
+
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/recruitment/show.jsp");
+        rd.forward(request, response);
     }
 
 }
