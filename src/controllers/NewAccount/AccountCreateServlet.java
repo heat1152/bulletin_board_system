@@ -55,6 +55,7 @@ public class AccountCreateServlet extends HttpServlet {
         em.close();
 
         request.getSession().setAttribute("login_user", u);
+        request.getSession().setAttribute("flush", "新規登録完了");
         response.sendRedirect(request.getContextPath() + "/toppage/index");
         }
     }

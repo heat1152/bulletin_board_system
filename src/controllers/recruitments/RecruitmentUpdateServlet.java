@@ -36,6 +36,7 @@ public class RecruitmentUpdateServlet extends HttpServlet {
             em.close();
 
             request.getSession().removeAttribute("recruitment_id");
+            request.getSession().setAttribute("flush", "更新完了");
 
             response.sendRedirect(request.getContextPath() + "/recruitment/show?id="+r.getId());
         }

@@ -31,6 +31,10 @@ public class UserShowServlet extends HttpServlet {
 
         em.close();
         request.setAttribute("user", u);
+        if(request.getSession().getAttribute("flush") != null) {
+            request.setAttribute("flush", request.getSession().getAttribute("flush"));
+            request.getSession().removeAttribute("flush");
+        }
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/user/show.jsp");
         rd.forward(request, response);
 

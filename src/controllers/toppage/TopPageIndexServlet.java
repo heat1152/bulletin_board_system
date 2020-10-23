@@ -15,7 +15,7 @@ import models.Recruitment;
 import models.User;
 import utils.DBUtil;
 
-@WebServlet("/toppage/index")
+@WebServlet("/index.html")
 public class TopPageIndexServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -49,6 +49,11 @@ public class TopPageIndexServlet extends HttpServlet {
 
         request.setAttribute("recruitments", recruitments);
         request.setAttribute("recruitments_count", recruitments_count);
+
+        if(request.getSession().getAttribute("flush") != null) {
+            request.setAttribute("flush", request.getSession().getAttribute("flush"));
+            request.getSession().removeAttribute("flush");
+        }
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
         rd.forward(request, response);

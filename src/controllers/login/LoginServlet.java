@@ -28,6 +28,10 @@ public class LoginServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setAttribute("_token", request.getSession().getId());
         request.setAttribute("hasError", false);
+        if(request.getSession().getAttribute("flush") != null) {
+            request.setAttribute("flush", request.getSession().getAttribute("flush"));
+            request.getSession().removeAttribute("flush");
+        }
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/login/login.jsp");
         rd.forward(request, response);
     }
@@ -74,7 +78,8 @@ public class LoginServlet extends HttpServlet {
         } else {
             // 認証できたらログイン状態にしてトップページへリダイレクト
             request.getSession().setAttribute("login_user", u);
-            response.sendRedirect(request.getContextPath() + "/toppage/index");
+            request.getSession().setAttribute("flush", "ログインしました。");
+            response.sendRedirect(request.getContextPath() + "/");
         }
     }
 }

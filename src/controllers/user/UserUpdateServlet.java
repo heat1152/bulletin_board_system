@@ -40,7 +40,7 @@ public class UserUpdateServlet extends HttpServlet {
 
 
         request.getSession().removeAttribute("user_id");
-
+        request.getSession().setAttribute("flush", "更新完了");
         response.sendRedirect(request.getContextPath() + "/user/show?id="+u.getId());
         }
     }

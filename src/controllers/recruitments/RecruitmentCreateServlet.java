@@ -41,7 +41,7 @@ public class RecruitmentCreateServlet extends HttpServlet {
             em.persist(r);
             em.getTransaction().commit();
             em.close();
-
+            request.getSession().setAttribute("flush", "投稿完了");
             response.sendRedirect(request.getContextPath() + "/recruitment/index");
         }
     }

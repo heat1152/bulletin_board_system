@@ -45,6 +45,10 @@ public class RecruitmentIndexServlet extends HttpServlet {
         request.setAttribute("recruitments", recruitments);
         request.setAttribute("recruitments_count", recruitments_count);
         request.setAttribute("page", page);
+        if(request.getSession().getAttribute("flush") != null) {
+            request.setAttribute("flush", request.getSession().getAttribute("flush"));
+            request.getSession().removeAttribute("flush");
+        }
 
         RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/recruitment/index.jsp");
         rd.forward(request, response);

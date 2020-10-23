@@ -2,7 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../layout/app.jsp">
     <c:param name="content">
+        <c:if test="${flush != null}">
+            <div id="flush_success">
+                <c:out value="${flush}"></c:out>
+            </div>
+        </c:if>
         <h2>募集一覧</h2>
+        <c:if test="${sessionScope.login_user != null}">
+            <div id="form_button">
+                <button onclick="location.href='<c:url value='/recruitment/new' />'">募集新規作成</button>
+            </div>
+        </c:if>
         <table id="recruitment_list">
             <tbody>
                 <c:forEach var="recruitment" items="${recruitments}">
@@ -30,9 +40,6 @@
                     </c:otherwise>
                 </c:choose>
             </c:forEach>
-        </div>
-        <div id="form_button">
-            <button onclick="location.href='<c:url value='/recruitment/new' />'">募集新規作成</button>
         </div>
     </c:param>
 </c:import>
