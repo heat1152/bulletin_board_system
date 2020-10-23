@@ -16,9 +16,9 @@
         <form method="POST" action="<c:url value='/login' />">
             <c:import url="../layout/account_form.jsp"/>
             <div id="form_button">
-                <button type="submit">ログイン</button>
+                <button type="submit" onclick="return accountCheck()">ログイン</button>
             </div>
-
         </form>
+        <script type="text/javascript" src="<c:url value='/js/validator.js' />"></script>
     </c:param>
 </c:import>

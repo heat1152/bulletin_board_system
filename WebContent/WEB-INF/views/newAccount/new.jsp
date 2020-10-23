@@ -6,8 +6,9 @@
         <form method="POST" action="<c:url value='/account/create' />">
             <c:import url="../layout/account_form.jsp"/>
             <div id="form_button">
-                <button type="submit">新規登録</button>
+                <button type="submit" onclick="return accountCheck()">新規登録</button>
             </div>
         </form>
+        <script type="text/javascript" src="<c:url value='/js/validator.js' />"></script>
     </c:param>
 </c:import>
