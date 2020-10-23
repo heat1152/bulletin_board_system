@@ -16,7 +16,7 @@
                 </table>
                 <c:if test="${sessionScope.login_user.id == recruitment.user.id}">
                     <div id="form_button">
-                        <button onclick="location.href='<c:url value='/recruitment/edit?=${recruitment.id}' />'">編集する</button>
+                        <button onclick="location.href='<c:url value='/recruitment/edit?id=${recruitment.id}' />'">編集する</button>
                     </div>
                 </c:if>
             </c:when>
