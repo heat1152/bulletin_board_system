@@ -24,6 +24,15 @@ import javax.persistence.Table;
             name = "getRecruitmentsCount",
             query = "SELECT COUNT(r) FROM Recruitment AS r"
             ),
+    @NamedQuery(
+            name = "getMyRecruitments",
+            query = "SELECT r FROM Recruitment AS r WHERE r.user = :login_user ORDER BY r.id DESC"
+            ),
+    @NamedQuery(
+            name = "getMyRecruitmentsCount",
+            query = "SELECT COUNT(r) FROM Recruitment AS r WHERE r.user = :login_user"
+            ),
+
 })
 @Entity
 public class Recruitment {

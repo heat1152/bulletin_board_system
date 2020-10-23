@@ -2,11 +2,34 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:import url="../layout/app.jsp">
     <c:param name="content">
-        <h2>募集投稿掲示板</h2>
-        <c:forEach var="user" items="${users}">
-            <td><c:out value="${user.id}"/></td>
-            <td><a href="<c:url value='/user/show?id=${user.id}' />"><c:out value="${user.name}"/></a></td>
-            <td><c:out value="${user.profile}"/></td>
-        </c:forEach>
+        <h2>自分の投稿一覧</h2>
+        <table id="recruitment_list">
+            <tbody>
+                <c:forEach var="recruitment" items="${recruitments}">
+                    <tr><td>名前：<a href="<c:url value='/user/show?id=${recruitment.user.id}' />"><c:out value="${recruitment.user.name}"/></a></td></tr>
+                    <tr class="contents_tr"><td><c:out value="${recruitment.contents}"/></td></tr>
+                    <tr>
+                        <td>
+                            <div id="show_link">
+                                <a href="<c:url value='/recruitment/show?id=${recruitment.id}'/>">詳細を見る</a>
+                            </div>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </tbody>
+        </table>
+        <div id="pagination">
+            （全 ${recruitments_count} 件）<br />
+            <c:forEach var="i" begin="1" end="${((recruitments_count - 1) / 10) + 1}" step="1">
+                <c:choose>
+                    <c:when test="${i == page}">
+                        <c:out value="${i}" />&nbsp;
+                    </c:when>
+                    <c:otherwise>
+                        <a href="<c:url value='/recruitment/index?page=${i}' />"><c:out value="${i}" /></a>&nbsp;
+                    </c:otherwise>
+                </c:choose>
+            </c:forEach>
+        </div>
     </c:param>
 </c:import>

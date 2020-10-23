@@ -55,7 +55,7 @@ public class AccountCreateServlet extends HttpServlet {
         em.close();
 
         request.getSession().setAttribute("login_user", u);
-        response.sendRedirect(request.getContextPath() + "/noAccountTopPage");
+        response.sendRedirect(request.getContextPath() + "/toppage/index");
         }
     }
 

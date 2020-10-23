@@ -74,7 +74,7 @@ public class LoginServlet extends HttpServlet {
         } else {
             // 認証できたらログイン状態にしてトップページへリダイレクト
             request.getSession().setAttribute("login_user", u);
-            response.sendRedirect(request.getContextPath() + "/noAccountTopPage");
+            response.sendRedirect(request.getContextPath() + "/toppage/index");
         }
     }
 }

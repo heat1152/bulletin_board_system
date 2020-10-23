@@ -15,7 +15,7 @@ import models.User;
 import utils.DBUtil;
 
 
-@WebServlet("/noAccountTopPage")
+@WebServlet("/noAccountTopPage/index")
 public class NoAccountTopPageIndexServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -33,7 +33,7 @@ public class NoAccountTopPageIndexServlet extends HttpServlet {
 
         request.setAttribute("users", users);
 
-        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/topPage/index.jsp");
+        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/noAccountTopPage/index.jsp");
         rd.forward(request, response);
     }
 

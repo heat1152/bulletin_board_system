@@ -11,7 +11,14 @@
     <body>
         <div id="wrapper">
             <div id="header">
-                <h1><a href="<c:url value='/noAccountTopPage' />">募集投稿掲示板</a></h1>
+                <c:choose>
+                    <c:when test="${sessionScope.login_user.id != null}">
+                        <h1><a href="<c:url value='/toppage/index' />">募集投稿掲示板</a></h1>
+                    </c:when>
+                    <c:otherwise>
+                      <h1><a href="<c:url value='/noAccountTopPage/index' />">募集投稿掲示板</a></h1>
+                    </c:otherwise>
+                </c:choose>
                 <div id="menu">
                     <c:if test="${sessionScope.login_user == null}">
                         <a href="<c:url value='/login' />">ログイン</a>&nbsp;&nbsp;&nbsp;&nbsp;
