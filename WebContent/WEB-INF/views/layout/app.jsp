@@ -20,7 +20,7 @@
                     </c:if>
                      <c:if test="${sessionScope.login_user != null}">
                         <a href="<c:url value='/recruitment/index' />">募集一覧</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="<c:url value='/' />">自分の投稿一覧</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a href="<c:url value='/' />">自分の募集一覧</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="<c:url value='/user/show?id=${sessionScope.login_user.id}' />">マイページ</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="<c:url value='/logout' />">ログアウト</a>&nbsp;&nbsp;
                     </c:if>
