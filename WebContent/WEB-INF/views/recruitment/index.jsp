@@ -8,11 +8,18 @@
             </div>
         </c:if>
         <h2>募集一覧</h2>
-        <c:if test="${sessionScope.login_user != null}">
-            <div id="form_button">
-                <button onclick="location.href='<c:url value='/recruitment/new' />'">募集新規作成</button>
-            </div>
-        </c:if>
+        <c:choose>
+            <c:when test="${sessionScope.login_user != null}">
+                <div id="form_button">
+                    <button onclick="location.href='<c:url value='/recruitment/new' />'">募集新規作成</button>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div id="caution_message">
+                    <p>投稿機能はログイン後に使うことができます。</p>
+                </div>
+            </c:otherwise>
+        </c:choose>
         <table id="recruitment_list">
             <tbody>
                 <c:forEach var="recruitment" items="${recruitments}">

@@ -1,6 +1,7 @@
 package controllers.recruitments;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import models.Comment;
 import models.Recruitment;
 import utils.DBUtil;
 
@@ -27,9 +29,16 @@ public class RecruitmentShowServlet extends HttpServlet {
         EntityManager em = DBUtil.createEntityManager();
 
         Recruitment r = em.find(Recruitment.class, Integer.parseInt(request.getParameter("id")));
+        Recruitment recrutiment = r;
+
+        List<Comment> comments = em.createNamedQuery("getAllComments", Comment.class)
+                .setParameter("recruitment", recrutiment)
+                .getResultList();
+
 
         em.close();
 
+        request.setAttribute("comments", comments);
         request.setAttribute("recruitment", r);
         request.setAttribute("_token", request.getSession().getId());
         if(request.getSession().getAttribute("flush") != null) {

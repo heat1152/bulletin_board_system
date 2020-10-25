@@ -24,10 +24,13 @@
                         <button onclick="location.href='<c:url value='/recruitment/edit?id=${recruitment.id}' />'">編集する</button>
                     </div>
                 </c:if>
+                <c:import url="../layout/comment_area.jsp"/>
             </c:when>
             <c:otherwise>
                 <h2>お探しのデータは見つかりませんでした。</h2>
             </c:otherwise>
         </c:choose>
+
+
     </c:param>
 </c:import>
