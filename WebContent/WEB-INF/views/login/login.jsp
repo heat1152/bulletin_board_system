@@ -12,7 +12,9 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h2>ログイン</h2>
+        <div id="content_line">
+            <h2>ログイン</h2>
+        </div>
         <form method="POST" action="<c:url value='/login' />">
             <c:import url="../layout/account_form.jsp"/>
             <div id="form_button">

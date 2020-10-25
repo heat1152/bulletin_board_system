@@ -1,0 +1,45 @@
+package controllers.comment;
+
+import java.io.IOException;
+import java.sql.Timestamp;
+
+import javax.persistence.EntityManager;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import models.Comment;
+import utils.DBUtil;
+
+@WebServlet("/comment/update")
+public class CommentUpdateServlet extends HttpServlet {
+    private static final long serialVersionUID = 1L;
+
+    public CommentUpdateServlet() {
+        super();
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String _token = (String)request.getParameter("_token");
+        if(_token != null && _token.equals(request.getSession().getId())) {
+            EntityManager em = DBUtil.createEntityManager();
+
+            Comment c = em.find(Comment.class, (Integer)(request.getSession().getAttribute("comment_id")));
+
+            c.setContents(request.getParameter("comment_contents"));
+            c.setUpdated_at(new Timestamp(System.currentTimeMillis()));
+
+            em.getTransaction().begin();
+            em.getTransaction().commit();
+            em.close();
+
+            request.getSession().removeAttribute("comment_id");
+            request.getSession().setAttribute("flush", "コメント更新完了");
+
+            response.sendRedirect(request.getContextPath() + "/recruitment/show?id="+c.getRecruitment().getId());
+        }
+    }
+
+}

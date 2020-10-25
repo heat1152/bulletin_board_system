@@ -7,15 +7,17 @@
                 <c:out value="${flush}"></c:out>
             </div>
         </c:if>
-        <h2>自分の投稿一覧</h2>
+        <div id="content_line">
+            <h2>自分の投稿一覧</h2>
+        </div>
         <c:if test="${sessionScope.login_user != null}">
             <div id="form_button">
                 <button onclick="location.href='<c:url value='/recruitment/new' />'">募集新規作成</button>
             </div>
         </c:if>
-        <table id="recruitment_list">
-            <tbody>
-                <c:forEach var="recruitment" items="${recruitments}">
+        <c:forEach var="recruitment" items="${recruitments}">
+            <table>
+                <tbody>
                     <tr><td>名前：<a href="<c:url value='/user/show?id=${recruitment.user.id}' />"><c:out value="${recruitment.user.name}"/></a></td></tr>
                     <tr class="contents_tr"><td><c:out value="${recruitment.contents}"/></td></tr>
                     <tr>
@@ -25,9 +27,9 @@
                             </div>
                         </td>
                     </tr>
-                </c:forEach>
-            </tbody>
-        </table>
+                </tbody>
+            </table>
+        </c:forEach>
         <div id="pagination">
             （全 ${recruitments_count} 件）<br />
             <c:forEach var="i" begin="1" end="${((recruitments_count - 1) / 10) + 1}" step="1">

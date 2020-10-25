@@ -1,18 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<p>コメント</p>
-<table>
-    <tbody>
-        <c:forEach var="comment" items="${comments}">
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<div id="content_line">
+    <h3>コメント</h3>
+</div>
+<c:forEach var="comment" items="${comments}">
+    <table>
+        <tbody>
             <tr>
                 <td>
-                    <a href="<c:url value='/user/show?id=${comment.user.id}' />"><c:out value="${comment.user.name}"/></a>　さん：
-                    <br/><c:out value="${comment.contents}"/>
+                    名前：<a href="<c:url value='/user/show?id=${comment.user.id}' />"><c:out value="${comment.user.name}"/></a>
                 </td>
             </tr>
-        </c:forEach>
-    </tbody>
-</table>
+            <tr>
+                <td>
+                    <c:out value="${comment.contents}"/><br/>
+                    <p id="comment_time">
+                        作成日時：<fmt:formatDate value="${recruitment.created_at}" pattern="yyyy-MM-dd HH:mm:ss" />
+                        　　更新日時：<fmt:formatDate value="${recruitment.updated_at}" pattern="yyyy-MM-dd HH:mm:ss" />　　
+                    </p>
+                    <c:if test="${sessionScope.login_user.id == comment.user.id}">
+                        <div id="comment_button_right">
+                            <input type="button" value="編集" onclick="location.href='<c:url value='/comment/edit?id=${comment.id}'/>'"/>
+                            　<input type="button" value="削除" onclick="confirmCommentDestroy();"/>
+                            <form name="comment_destroy" method="POST" action="<c:url value='/comment/destroy' />">
+                                <input type="hidden" name="_token" value="${_token}" />
+                                <input type="hidden" name="comment_id" value="${comment.id}" />
+                            </form>
+                        </div>
+                    </c:if>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</c:forEach>
 <c:choose>
     <c:when test="${sessionScope.login_user != null}">
         <form method="POST" action="<c:url value='/comment/create'/>">
@@ -37,4 +58,4 @@
         </div>
     </c:otherwise>
 </c:choose>
-
+<script type="text/javascript" src="<c:url value='/js/destroy.js' />"></script>

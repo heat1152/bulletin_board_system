@@ -4,7 +4,9 @@
     <c:param name="content">
         <c:choose>
             <c:when test="${user != null}">
-                <h2>マイページ編集</h2>
+                <div id="content_line">
+                    <h2>マイページ編集</h2>
+                </div>
                 <form method="POST" action="<c:url value='/user/update'/>">
                     <div id="centering_parent">
                         <div id="form_center">

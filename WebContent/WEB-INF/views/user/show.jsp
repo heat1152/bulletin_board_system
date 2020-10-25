@@ -9,10 +9,14 @@
         </c:if>
         <c:choose>
             <c:when test="${sessionScope.login_user.id == user.id}">
-                <h2>マイページ</h2>
+                <div id="content_line">
+                    <h2>マイページ</h2>
+                </div>
             </c:when>
             <c:otherwise>
-                <h2>ユーザー詳細</h2>
+                <div id="content_line">
+                    <h2>ユーザー詳細</h2>
+                </div>
             </c:otherwise>
         </c:choose>
         <table>

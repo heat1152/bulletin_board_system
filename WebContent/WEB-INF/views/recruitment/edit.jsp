@@ -4,18 +4,14 @@
     <c:param name="content">
         <c:choose>
             <c:when test="${recruitment != null}">
-                <h2>募集編集</h2>
+                <div id="content_line">
+                    <h2>募集編集</h2>
+                </div>
                 <form method="POST" action="<c:url value='/recruitment/update' />">
                     <c:import url="../layout/recruitment_form.jsp"/>
                     <div id="form_button">
                         <button type="submit">更新</button>
                     </div>
-                </form>
-                <div id="destroy_link">
-                    <a href="#" onclick="confirmDestroy();">削除する</a>
-                </div>
-                <form method="POST" action="<c:url value='/recruitment/destroy' />">
-                    <input type="hidden" name="_token" value="${_token}" />
                 </form>
             </c:when>
             <c:otherwise>
