@@ -45,8 +45,13 @@ public class TopPageIndexServlet extends HttpServlet {
                 .setParameter("login_user", login_user)
                 .getSingleResult();
 
+        List<Recruitment> new_recruitments = em.createNamedQuery("getAllRecruitments", Recruitment.class)
+                .setMaxResults(3)
+                .getResultList();
+
         em.close();
 
+        request.setAttribute("new_recruitments", new_recruitments);
         request.setAttribute("recruitments", recruitments);
         request.setAttribute("recruitments_count", recruitments_count);
 

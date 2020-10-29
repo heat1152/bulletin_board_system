@@ -33,15 +33,12 @@ h1 {
 
 h2 {
     font-size: 36px;
-    margin-bottom: 15px;
     text-align: center;
 }
 
 h3 {
     font-size: 22px;
     text-align: center;
-    margin-top: 30px;
-    margin-bottom: 30px;
 }
 
 button {
@@ -166,6 +163,9 @@ button.comment_button{
     border-bottom: 1px solid #d5d5d5;
     margin-top: 30px;
     margin-bottom: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+
 }
 
 #pagination {
@@ -187,10 +187,10 @@ button.comment_button{
     padding-bottom: 28px;
     margin-top: 15px;
     margin-bottom: 15px;
-    color: #721c24;
-    background-color: #f8d7da;
     margin-left: auto;
     margin-right: auto;
+    color: #721c24;
+    background-color: #f8d7da;
 }
 
 #flush_error {
@@ -237,6 +237,11 @@ pre {
     margin:5px;
 }
 
+#top_page_img{
+    width: 100%;
+    height: 500px;
+}
+
 #recruitment_img{
     width: 120px;
     height: 120px;
@@ -273,4 +278,15 @@ th.comment_img_block{
 #user_img{
     text-align: center;
     margin: 20px;
+}
+#top_page_button{
+    text-align: center;
+}
+
+#top_page_button button{
+    width: 8%;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 30px;
+    margin-bottom: 30px;
 }
