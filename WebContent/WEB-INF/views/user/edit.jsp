@@ -7,11 +7,14 @@
                 <div id="content_line">
                     <h2>マイページ編集</h2>
                 </div>
-                <form method="POST" action="<c:url value='/user/update'/>">
+                <form method="POST" enctype="multipart/form-data" action="<c:url value='/user/update'/>">
                     <div id="centering_parent">
                         <div id="form_center">
+                            <label for="profile_photo">アイコン画像</label><br />
+                            <input type="file" name="profile_photo"/>
+                            <br /><br />
                             <label for="name">名前*</label><br />
-                            <input type="text" name="name" value="${user.name}" class="account_textarea" id="user_name" maxlength='20'/>
+                            <input type="text" name="name" value="${user.name}" class="account_textarea" maxlength='20'/>
                             <br /><br />
                             <label for="profile">自己紹介文</label><br />
                             <textarea name="profile" class="contents_textarea" maxlength='255'>${user.profile}</textarea>

@@ -4,16 +4,19 @@ import java.io.IOException;
 
 import javax.persistence.EntityManager;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import models.User;
 import utils.DBUtil;
 
 
 @WebServlet("/user/update")
+@MultipartConfig(location="/tmp", maxFileSize=1080*1080)
 public class UserUpdateServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
@@ -33,7 +36,15 @@ public class UserUpdateServlet extends HttpServlet {
 
         u.setName(request.getParameter("name"));
         u.setProfile(request.getParameter("profile"));
+        try{
+        Part part = request.getPart("profile_photo");
+        String file_name = part.getSubmittedFileName();
+        part.write(getServletContext().getRealPath("/user_photo")+"/"+file_name);
 
+        u.setProfile_phto(file_name);
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
         em.getTransaction().begin();
         em.getTransaction().commit();
         em.close();
@@ -44,5 +55,4 @@ public class UserUpdateServlet extends HttpServlet {
         response.sendRedirect(request.getContextPath() + "/user/show?id="+u.getId());
         }
     }
-
 }

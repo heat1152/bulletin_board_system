@@ -46,7 +46,7 @@ public class Recruitment {
     private User user;
 
     @Lob
-    @Column(name = "contents",length = 255,nullable = false)
+    @Column(name = "contents",nullable = false)
     private String contents;
 
     @Column(name = "created_at",nullable = false)

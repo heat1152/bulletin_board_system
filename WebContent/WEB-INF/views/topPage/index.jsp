@@ -18,8 +18,20 @@
         <c:forEach var="recruitment" items="${recruitments}">
             <table>
                 <tbody>
-                    <tr><td>名前：<a href="<c:url value='/user/show?id=${recruitment.user.id}' />"><c:out value="${recruitment.user.name}"/></a></td></tr>
-                    <tr class="contents_tr"><td><c:out value="${recruitment.contents}"/></td></tr>
+                    <tr>
+                        <c:choose>
+                            <c:when test="${recruitment.user.profile_phto != null}">
+                                <th rowspan="3" class="img_block"><img src="${pageContext.request.contextPath}/user_photo/${recruitment.user.profile_phto}" id="recruitment_img"></th>
+                            </c:when>
+                            <c:otherwise>
+                                <th rowspan="3" class="img_block"><img src="${pageContext.request.contextPath}/user_initial_icon/initial_icon.png" id="recruitment_img"></th>
+                            </c:otherwise>
+                        </c:choose>
+                        <td>
+                            名前：<a href="<c:url value='/user/show?id=${recruitment.user.id}' />"><c:out value="${recruitment.user.name}"/></a>
+                        </td>
+                    </tr>
+                    <tr class="contents_tr"><td><pre><c:out value="${recruitment.contents}"/></pre></td></tr>
                     <tr>
                         <td>
                             <div id="show_link">

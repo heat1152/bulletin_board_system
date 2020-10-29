@@ -19,13 +19,25 @@
                 </div>
             </c:otherwise>
         </c:choose>
+        <c:choose>
+            <c:when test="${user.profile_phto != null}">
+                <div id="user_img">
+                    <img src="${pageContext.request.contextPath}/user_photo/${user.profile_phto}" id="show_img">
+                </div>
+            </c:when>
+            <c:otherwise>
+                <div id="user_img">
+                    <img src="${pageContext.request.contextPath}/user_initial_icon/initial_icon.png" id="show_img">
+                </div>
+            </c:otherwise>
+        </c:choose>
         <table>
             <tbody>
                 <tr>
                     <td>名前：<c:out value="${user.name}"/></td>
                 </tr>
                 <tr class="contents_tr">
-                    <td><c:out value="${user.profile}"/></td>
+                    <td><pre><c:out value="${user.profile}"/></pre></td>
                 </tr>
             </tbody>
         </table>

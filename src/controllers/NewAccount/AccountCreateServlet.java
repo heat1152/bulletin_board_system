@@ -3,7 +3,6 @@ package controllers.NewAccount;
 import java.io.IOException;
 
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -41,16 +40,10 @@ public class AccountCreateServlet extends HttpServlet {
         u.setName(name);
         u.setPassword(password);
 
+
         em.getTransaction().begin();
         em.persist(u);
         em.getTransaction().commit();
-
-        try {
-            u = em.createNamedQuery("checkLoginNameAndPassword", User.class)
-                  .setParameter("name", name)
-                  .setParameter("pass", password)
-                  .getSingleResult();
-        } catch(NoResultException ex) {}
 
         em.close();
 

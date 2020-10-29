@@ -84,11 +84,12 @@ a {
 
 table {
     border: 1px solid #d5d5d5;
-    width: 70%;
+    width: 60%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 10px;
     background-color: #fbfbfb;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .5);
 
 }
 tr, th, td {
@@ -97,11 +98,6 @@ tr, th, td {
     margin-right: auto;
 }}
 
-
-th {
-    width: 20%;
-    padding: 10px 2%;
-}
 td {
     width: 80%;
     padding: 5px 2%;
@@ -156,9 +152,10 @@ button.comment_button{
 }
 
 #comment_time{
-    font-size: 80%;
+    font-size: 75%;
     color: #a9a9a9;
     display:inline;
+    margin-left: 10px;
 }
 
 #comment_button_right{
@@ -220,6 +217,7 @@ button.comment_button{
     font-size: 12px;
     text-align: center;
 }
+
 #destroy_link{
     margin-top: 30px;
     margin-bottom: 30px;
@@ -234,4 +232,45 @@ h1 a {
     color: #eeeeee;
 }
 
+pre {
+    font-family: "Hiragino Kaku Gothic Pro",Meiryo,"MS PGothic",Helvetica,Arial,sans-serif;
+    margin:5px;
+}
 
+#recruitment_img{
+    width: 120px;
+    height: 120px;
+    border-radius: 5px;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .5);
+}
+
+th.img_block{
+    width:130px;
+    text-align:center;
+    padding:10px;
+    }
+
+#comment_img{
+    width: 80px;
+    height: 80px;
+    border-radius: 5px;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .5);
+}
+
+th.comment_img_block{
+    width:90px;
+    text-align:center;
+    padding:10px;
+}
+
+#show_img{
+    width: 200px;
+    height: 200px;
+    border-radius: 5px;
+    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, .5);
+}
+
+#user_img{
+    text-align: center;
+    margin: 20px;
+}

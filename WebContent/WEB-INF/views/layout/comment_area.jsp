@@ -8,13 +8,21 @@
     <table>
         <tbody>
             <tr>
+                <c:choose>
+                    <c:when test="${comment.user.profile_phto != null}">
+                        <th rowspan="2" class="comment_img_block"><img src="${pageContext.request.contextPath}/user_photo/${comment.user.profile_phto}" id="comment_img"></th>
+                    </c:when>
+                    <c:otherwise>
+                        <th rowspan="2" class="comment_img_block"><img src="${pageContext.request.contextPath}/user_initial_icon/initial_icon.png" id="comment_img"></th>
+                    </c:otherwise>
+                </c:choose>
                 <td>
                     名前：<a href="<c:url value='/user/show?id=${comment.user.id}' />"><c:out value="${comment.user.name}"/></a>
                 </td>
             </tr>
             <tr>
                 <td>
-                    <c:out value="${comment.contents}"/><br/>
+                    <pre><c:out value="${comment.contents}"/><br/></pre>
                     <p id="comment_time">
                         作成日時：<fmt:formatDate value="${recruitment.created_at}" pattern="yyyy-MM-dd HH:mm:ss" />
                         　　更新日時：<fmt:formatDate value="${recruitment.updated_at}" pattern="yyyy-MM-dd HH:mm:ss" />　　

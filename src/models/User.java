@@ -33,11 +33,14 @@ public class User {
     private String name;
 
     @Lob
-    @Column(name = "profile",length = 255)
+    @Column(name = "profile")
     private String profile;
 
     @Column(name = "password",length = 64,nullable = false)
     private String password;
+
+    @Column(name = "profile_photo",length = 255)
+    private String profile_phto;
 
     public Integer getId() {
         return id;
@@ -69,6 +72,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getProfile_phto() {
+        return profile_phto;
+    }
+
+    public void setProfile_phto(String profile_phto) {
+        this.profile_phto = profile_phto;
     }
 
 }

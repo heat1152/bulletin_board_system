@@ -13,10 +13,22 @@
                 <div id="content_line">
                     <h2>募集詳細ページ</h2>
                 </div>
+                <c:choose>
+                    <c:when test="${recruitment.user.profile_phto != null}">
+                       <div id="user_img">
+                            <img src="${pageContext.request.contextPath}/user_photo/${recruitment.user.profile_phto}" id="show_img">
+                       </div>
+                    </c:when>
+                    <c:otherwise>
+                        <div id="user_img">
+                            <img src="${pageContext.request.contextPath}/user_initial_icon/initial_icon.png" id="show_img">
+                        </div>
+                    </c:otherwise>
+                </c:choose>
                 <table>
                     <tbody>
                         <tr><td>名前：<a href="<c:url value='/user/show?id=${recruitment.user.id}' />"><c:out value="${recruitment.user.name}"/></a></td></tr>
-                        <tr class="contents_tr"><td><c:out value="${recruitment.contents}"/></td></tr>
+                        <tr class="contents_tr"><td><pre><c:out value="${recruitment.contents}"/></pre></td></tr>
                         <tr><td>作成日時：<fmt:formatDate value="${recruitment.created_at}" pattern="yyyy-MM-dd HH:mm:ss" /></td></tr>
                         <tr><td>更新日時：<fmt:formatDate value="${recruitment.updated_at}" pattern="yyyy-MM-dd HH:mm:ss" /></td></tr>
                         <c:if test="${sessionScope.login_user.id == recruitment.user.id}">
